@@ -1,3 +1,8 @@
+9/Dec/2021
+
+## NEED
+* Extra move for ship to move without breaking movement.
+
 ## IDIA
 
     Based on lost in space web series game will be set in space.
