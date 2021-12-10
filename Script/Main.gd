@@ -1,6 +1,8 @@
 extends Node2D
 # main
 
+export var astroid_density = 120 # onscreen count of astroid
+
 onready var ww = get_viewport().get_visible_rect().size.x
 onready var wh = get_viewport().get_visible_rect().size.y
 
@@ -13,8 +15,6 @@ func _ready() -> void:
 
 # for testing we gonna spawn astroied in side screen
 func _spawn_astroid():
-    for i in range(20):
-#        var spawn_point = Vector2(rand_range(0, ww), rand_range(0, wh))
+    for i in range(astroid_density):
         var instance = a.instance()
-#        instance.global_position = spawn_point
         add_child(instance)

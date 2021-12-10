@@ -14,8 +14,13 @@ config/name="Space"
 run/main_scene="res://Scene/Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://Script/Autoload/Global.gd"
+
 [display]
 
+window/size/always_on_top=true
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
