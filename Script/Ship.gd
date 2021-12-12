@@ -6,7 +6,16 @@ extends RigidBody2D
 var thrust = Vector2(0, -450)
 var touque = 5000
 
-func _integrate_forces(state: Physics2DDirectBodyState) -> void:
+
+func _ready() -> void:
+    Global.ship = self
+
+
+func _process(delta: float) -> void:
+    Global.constrain_in_screen(self)
+
+
+func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
     if Input.is_action_pressed("w"):
         applied_force = thrust.rotated(rotation)
     elif Input.is_action_pressed("s"):

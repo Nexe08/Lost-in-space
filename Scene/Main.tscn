@@ -11,5 +11,4 @@ script = ExtResource( 1 )
 position = Vector2( 507, 297 )
 
 [node name="Camera2D" type="Camera2D" parent="Ship"]
-current = true
 script = ExtResource( 3 )
