@@ -1,7 +1,7 @@
 extends Node2D
 # main
 
-export var astroid_density = 120 # onscreen count of astroid
+export var astroid_density = 60 # onscreen count of astroid
 
 onready var ww = get_viewport().get_visible_rect().size.x
 onready var wh = get_viewport().get_visible_rect().size.y

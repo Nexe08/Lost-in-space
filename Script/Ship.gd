@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-    Global.constrain_in_screen(self)
+    Global.constrain_in_screen(self, $Sprite.texture.get_size())
 
 
 func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
