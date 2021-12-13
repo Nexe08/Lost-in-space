@@ -5,6 +5,7 @@ var destruction_distance = 1024 # double of viewport size
 
 
 func _ready() -> void:
+    $Sprite.frame = randi() % ($Sprite.hframes * $Sprite.vframes)
     global_rotation = rand_range(-1, 1)
     apply_impulse(Vector2.ZERO, Vector2(rand_range(-50, 50), rand_range(-15, 15)))
     add_torque(rand_range(-50, 50))

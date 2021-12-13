@@ -8,6 +8,9 @@ export (float) var MAX_VELOCITY = 300
 var thrust = Vector2(0, -450)
 var touque = 5000
 
+onready var lt = $leftThuster
+onready var rt = $rightThuster
+
 
 func _ready() -> void:
     Global.ship = self
@@ -20,10 +23,14 @@ func _process(delta: float) -> void:
 
 func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
     if Input.is_action_pressed("w"):
+        lt.emitting = true
+        rt.emitting = true
         applied_force = thrust.rotated(rotation)
     elif Input.is_action_pressed("s"):
         applied_force = -(thrust / 2).rotated(rotation)
     else:
+        lt.emitting = false
+        rt.emitting = false
         applied_force = Vector2.ZERO
     
     var rotation_dir = 0
