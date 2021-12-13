@@ -3,6 +3,8 @@ extends RigidBody2D
 
 # tweek mass facter for modify ship control
 
+export (float) var MAX_VELOCITY = 300
+
 var thrust = Vector2(0, -450)
 var touque = 5000
 
@@ -12,6 +14,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+    print(linear_velocity)
     Global.constrain_in_screen(self, $Sprite.texture.get_size())
 
 
@@ -32,3 +35,6 @@ func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
         rotation_dir -= 1
     
     applied_torque = rotation_dir * touque
+    
+    linear_velocity.x = clamp(linear_velocity.x, -MAX_VELOCITY / 2, MAX_VELOCITY / 2)
+    linear_velocity.y = clamp(linear_velocity.y, -MAX_VELOCITY, MAX_VELOCITY)

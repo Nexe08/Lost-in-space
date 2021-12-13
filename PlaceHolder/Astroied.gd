@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func _set_position():
     var spawn_point = Vector2(
-        rand_range(50, Global.screen_size.x - 50),
+        rand_range(10, Global.screen_size.x - 10),
         rand_range(Global.ship.global_position.y - 1024,
                     Global.ship.global_position.y - 2048)
     )
