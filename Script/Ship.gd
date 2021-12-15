@@ -16,6 +16,7 @@ var prev_global_position: Vector2 = Vector2.ZERO
 onready var lt = $leftThuster
 onready var rt = $rightThuster
 
+onready var thuster_sfx = $ThursterSFX
 
 func _ready() -> void:
     Global.ship = self
@@ -42,6 +43,9 @@ func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
         lt.emitting = true
         rt.emitting = true
         applied_force = thrust.rotated(rotation)
+        
+        if thuster_sfx.playing == false:
+            thuster_sfx.play()
     elif Input.is_action_pressed("s"):
         applied_force = -(thrust / 2).rotated(rotation)
     else:
@@ -49,6 +53,8 @@ func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
         rt.emitting = false
         applied_force = Vector2.ZERO
     
+        thuster_sfx.stop()
+        
     var rotation_dir = 0
     
     if Input.is_action_pressed("d"):
@@ -89,3 +95,4 @@ func _on_Ship_body_entered(body: Node) -> void:
 
 func _on_ShildRefillCooldown_timeout() -> void:
     refill_shild = true
+

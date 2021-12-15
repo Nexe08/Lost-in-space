@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Script/Ship.gd" type="Script" id=1]
 [ext_resource path="res://assate/Spaceships.png" type="Texture" id=2]
+[ext_resource path="res://Save/EXPORT/ship_thurster_mid.wav" type="AudioStream" id=5]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 1.0
@@ -89,6 +90,9 @@ margin_bottom = 14.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ThursterSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
 
 [connection signal="body_entered" from="." to="." method="_on_Ship_body_entered"]
 [connection signal="timeout" from="PrevPositionAssigner" to="." method="_on_PrevPositionAssigner_timeout"]
