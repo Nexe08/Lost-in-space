@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Script/Ship.gd" type="Script" id=1]
 [ext_resource path="res://assate/Spaceships.png" type="Texture" id=2]
+[ext_resource path="res://Save/EXPORT/ship_thurster_mid.wav" type="AudioStream" id=5]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 1.0
@@ -20,9 +21,11 @@ colors = PoolColorArray( 1, 1, 1, 1, 0.172549, 0.909804, 0.960784, 1, 0.0705882,
 
 [node name="Ship" type="RigidBody2D"]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 4
 mass = 5.0
 physics_material_override = SubResource( 1 )
+contacts_reported = 5
+contact_monitor = true
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -75,4 +78,22 @@ color_ramp = SubResource( 5 )
 wait_time = 0.5
 autostart = true
 
+[node name="ShildRefillCooldown" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ThursterSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[connection signal="body_entered" from="." to="." method="_on_Ship_body_entered"]
 [connection signal="timeout" from="PrevPositionAssigner" to="." method="_on_PrevPositionAssigner_timeout"]
+[connection signal="timeout" from="ShildRefillCooldown" to="." method="_on_ShildRefillCooldown_timeout"]

@@ -1,10 +1,17 @@
 ## NEED
 
+- Shild system
+
+- Power ups
+
+  - shild
+  - speed boost
+
 - Extra move for ship to move without breaking movement.
 
 ## IDIA
 
-    Based on lost in space web series game will be set in space.
+Based on lost in space web series game will be set in space.
 
 Avoiding astriods and enemy which apear some time.
 
