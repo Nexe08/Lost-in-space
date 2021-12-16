@@ -4,11 +4,11 @@ extends RigidBody2D
 # tweek mass facter for modify ship control
 
 export var shild: int = 3
-export (float) var MAX_VELOCITY = 300
+export (Vector2) var MAX_VELOCITY = Vector2(200, 300)
 
 var refill_shild: bool = false
 
-var thrust = Vector2(0, -450)
+var thrust = Vector2(0, -1000)
 var touque = 5000
 
 var prev_global_position: Vector2 = Vector2.ZERO
@@ -22,8 +22,10 @@ func _ready() -> void:
     Global.ship = self
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
     $CanvasLayer/Label.text = String(shild)
+    $CanvasLayer/Label2.text = String(linear_velocity)
+    $CanvasLayer/Label3.text = String(angular_velocity)
     Global.constrain_in_screen(self, Vector2(16, 16))
     
     if refill_shild:
@@ -32,10 +34,19 @@ func _process(_delta: float) -> void:
         if shild == 3: refill_shild = false
     
     # clamping 
-    shild = clamp(shild, 0, 3)
+    shild = int(clamp(shild, 0, 3))
     
-    linear_velocity.x = clamp(linear_velocity.x, -MAX_VELOCITY / 2, MAX_VELOCITY / 2)
-    linear_velocity.y = clamp(linear_velocity.y, -MAX_VELOCITY, MAX_VELOCITY)
+    angular_velocity = clamp(angular_velocity, -5, 5)
+    
+    if linear_velocity.x > MAX_VELOCITY.x:
+        linear_velocity.x = lerp(linear_velocity.x, MAX_VELOCITY.x, 10 * delta)
+    elif linear_velocity.x < -MAX_VELOCITY.x:
+        linear_velocity.x = lerp(linear_velocity.x, -MAX_VELOCITY.x, 10 * delta)
+    
+    if linear_velocity.y < -MAX_VELOCITY.y:
+        linear_velocity.y = lerp(linear_velocity.y, -MAX_VELOCITY.y, 10 * delta)
+    elif linear_velocity.y > MAX_VELOCITY.y:
+        linear_velocity.y = lerp(linear_velocity.y, MAX_VELOCITY.y, 10 * delta)
 
 
 func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
@@ -64,6 +75,11 @@ func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
         rotation_dir -= 1
     
     applied_torque = rotation_dir * touque
+
+
+func _unhandled_input(event: InputEvent) -> void:
+    if event.is_action_pressed("space"):
+        apply_impulse(Vector2.ZERO, Vector2(0, -900).rotated(rotation))
 
 
 # Barrier for ship to down side

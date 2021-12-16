@@ -91,6 +91,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label2" type="Label" parent="CanvasLayer"]
+margin_left = 71.0
+margin_right = 111.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+margin_left = 63.0
+margin_top = 33.0
+margin_right = 103.0
+margin_bottom = 47.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ThursterSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 
