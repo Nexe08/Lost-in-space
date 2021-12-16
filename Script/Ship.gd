@@ -28,6 +28,8 @@ func _process(delta: float) -> void:
     $CanvasLayer/Label3.text = String(angular_velocity)
     Global.constrain_in_screen(self, Vector2(16, 16))
     
+    $Shild.global_position = global_position
+    
     if refill_shild:
         shild += 1
         
