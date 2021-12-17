@@ -3,13 +3,10 @@ extends RigidBody2D
 
 # tweek mass facter for modify ship control
 
-export var shild: int = 3
 export (Vector2) var MAX_VELOCITY = Vector2(200, 300)
 
-var refill_shild: bool = false
-
 var thrust = Vector2(0, -1000)
-var touque = 5000
+var touque = 10000
 
 var prev_global_position: Vector2 = Vector2.ZERO
 
@@ -23,20 +20,11 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-    $CanvasLayer/Label.text = String(shild)
     $CanvasLayer/Label2.text = String(linear_velocity)
     $CanvasLayer/Label3.text = String(angular_velocity)
     Global.constrain_in_screen(self, Vector2(16, 16))
     
-    $Shild.global_position = global_position
-    
-    if refill_shild:
-        shild += 1
-        
-        if shild == 3: refill_shild = false
-    
     # clamping 
-    shild = int(clamp(shild, 0, 3))
     
     angular_velocity = clamp(angular_velocity, -5, 5)
     
@@ -95,22 +83,6 @@ func _on_PrevPositionAssigner_timeout() -> void:
 
 
 # collision with astroide
-func _on_Ship_body_entered(body: Node) -> void:
-    if shild <= 0:
-        queue_free()
-        return
-    
-    var collision_speed: Vector2
-    var max_collision_speed:= Vector2(200, 200)
-    if body is RigidBody2D:
-        collision_speed = body.linear_velocity
-    
-    if abs(linear_velocity.y) > max_collision_speed.y or abs(linear_velocity.x) > max_collision_speed.x or abs(collision_speed.y) > max_collision_speed.y or abs(collision_speed.x) > max_collision_speed.x:
-        shild -= 1
-        $ShildRefillCooldown.stop()
-        $ShildRefillCooldown.start()
-
-
-func _on_ShildRefillCooldown_timeout() -> void:
-    refill_shild = true
-
+func _on_Ship_body_entered(_body: Node) -> void:
+    pass
+#    queue_free()

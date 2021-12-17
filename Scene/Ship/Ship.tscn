@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Script/Ship.gd" type="Script" id=1]
 [ext_resource path="res://assate/Spaceships.png" type="Texture" id=2]
-[ext_resource path="res://assate/shilde.png" type="Texture" id=3]
 [ext_resource path="res://Save/EXPORT/ship_thurster_mid.wav" type="AudioStream" id=5]
 
 [sub_resource type="PhysicsMaterial" id=1]
@@ -20,30 +19,12 @@ _data = [ Vector2( 0, 0.307377 ), 0.0, 0.0, 0, 0, Vector2( 0.0821918, 1 ), 0.0, 
 offsets = PoolRealArray( 0, 0.333333, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 0.172549, 0.909804, 0.960784, 1, 0.0705882, 0.305882, 0.537255, 1 )
 
-[sub_resource type="Environment" id=6]
-background_mode = 4
-glow_enabled = true
-glow_levels/2 = true
-glow_levels/4 = true
-glow_levels/5 = false
-glow_intensity = 0.06
-glow_strength = 0.93
-glow_blend_mode = 1
-glow_bicubic_upscale = true
-adjustment_enabled = true
-
-[sub_resource type="PhysicsMaterial" id=8]
-rough = true
-
-[sub_resource type="CircleShape2D" id=7]
-radius = 100.08
-
 [node name="Ship" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 4
 mass = 5.0
 physics_material_override = SubResource( 1 )
-contacts_reported = 5
+contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 1 )
 
@@ -97,10 +78,6 @@ color_ramp = SubResource( 5 )
 wait_time = 0.5
 autostart = true
 
-[node name="ShildRefillCooldown" type="Timer" parent="."]
-wait_time = 4.0
-one_shot = true
-
 [node name="ThursterSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 
@@ -130,23 +107,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 6 )
-
-[node name="Shild" type="RigidBody2D" parent="."]
-collision_layer = 16
-collision_mask = 4
-physics_material_override = SubResource( 8 )
-sleeping = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Shild"]
-shape = SubResource( 7 )
-
-[node name="Sprite2" type="Sprite" parent="Shild"]
-modulate = Color( 9, 9, 9, 1 )
-self_modulate = Color( 0.172549, 0.909804, 0.960784, 1 )
-texture = ExtResource( 3 )
-
 [connection signal="body_entered" from="." to="." method="_on_Ship_body_entered"]
 [connection signal="timeout" from="PrevPositionAssigner" to="." method="_on_PrevPositionAssigner_timeout"]
-[connection signal="timeout" from="ShildRefillCooldown" to="." method="_on_ShildRefillCooldown_timeout"]
