@@ -29,12 +29,12 @@ func _process(delta: float) -> void:
     # clamping 
     durability = clamp(durability, 0, 3) # hard codded max durability
     
-    angular_velocity = clamp(angular_velocity, -5, 5)
-    
-    if linear_velocity.x > MAX_VELOCITY.x:
-        linear_velocity.x = lerp(linear_velocity.x, MAX_VELOCITY.x, 10 * delta)
-    elif linear_velocity.x < -MAX_VELOCITY.x:
-        linear_velocity.x = lerp(linear_velocity.x, -MAX_VELOCITY.x, 10 * delta)
+#    angular_velocity = clamp(angular_velocity, -5, 5)
+#
+#    if linear_velocity.x > MAX_VELOCITY.x:
+#        linear_velocity.x = lerp(linear_velocity.x, MAX_VELOCITY.x, 10 * delta)
+#    elif linear_velocity.x < -MAX_VELOCITY.x:
+#        linear_velocity.x = lerp(linear_velocity.x, -MAX_VELOCITY.x, 10 * delta)
     
     if linear_velocity.y < -MAX_VELOCITY.y:
         linear_velocity.y = lerp(linear_velocity.y, -MAX_VELOCITY.y, 10 * delta)

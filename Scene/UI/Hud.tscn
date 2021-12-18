@@ -1,0 +1,197 @@
+[gd_scene format=2]
+
+[node name="Hud" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 1004.0
+margin_bottom = 580.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TopMargin" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 1004.0
+margin_bottom = 190.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MidMargin" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 194.0
+margin_right = 1004.0
+margin_bottom = 385.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HUDContainte" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 389.0
+margin_right = 1004.0
+margin_bottom = 580.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="StatusSide" type="GridContainer" parent="MarginContainer/VBoxContainer/HUDContainte"]
+margin_right = 500.0
+margin_bottom = 191.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 5
+
+[node name="DurabilityMetere" type="Panel" parent="MarginContainer/VBoxContainer/HUDContainte/StatusSide"]
+margin_right = 98.0
+margin_bottom = 191.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HUDContainte/StatusSide/DurabilityMetere"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "DURABILITY"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MiniMapContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HUDContainte/StatusSide"]
+margin_left = 102.0
+margin_right = 200.0
+margin_bottom = 191.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Margin" type="MarginContainer" parent="MarginContainer/VBoxContainer/HUDContainte/StatusSide/MiniMapContainer"]
+margin_right = 98.0
+margin_bottom = 93.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MiniMap" type="Panel" parent="MarginContainer/VBoxContainer/HUDContainte/StatusSide/MiniMapContainer"]
+margin_top = 97.0
+margin_right = 98.0
+margin_bottom = 191.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HUDContainte/StatusSide/MiniMapContainer/MiniMap"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "MINI MAP"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpedometerContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HUDContainte/StatusSide"]
+margin_left = 204.0
+margin_right = 302.0
+margin_bottom = 191.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Margin" type="MarginContainer" parent="MarginContainer/VBoxContainer/HUDContainte/StatusSide/SpedometerContainer"]
+margin_right = 98.0
+margin_bottom = 93.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Spedometer" type="Panel" parent="MarginContainer/VBoxContainer/HUDContainte/StatusSide/SpedometerContainer"]
+margin_top = 97.0
+margin_right = 98.0
+margin_bottom = 191.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HUDContainte/StatusSide/SpedometerContainer/Spedometer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "SPEED"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressSide" type="MarginContainer" parent="MarginContainer/VBoxContainer/HUDContainte"]
+margin_left = 504.0
+margin_right = 1004.0
+margin_bottom = 191.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HUDContainte/ProgressSide"]
+margin_right = 500.0
+margin_bottom = 191.0
+size_flags_horizontal = 3
+
+[node name="Margin" type="MarginContainer" parent="MarginContainer/VBoxContainer/HUDContainte/ProgressSide/VBoxContainer"]
+margin_right = 500.0
+margin_bottom = 93.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Content" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HUDContainte/ProgressSide/VBoxContainer"]
+margin_top = 97.0
+margin_right = 500.0
+margin_bottom = 191.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Margin" type="MarginContainer" parent="MarginContainer/VBoxContainer/HUDContainte/ProgressSide/VBoxContainer/Content"]
+margin_right = 122.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Margin2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HUDContainte/ProgressSide/VBoxContainer/Content"]
+margin_left = 126.0
+margin_right = 248.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CoinCounter" type="Panel" parent="MarginContainer/VBoxContainer/HUDContainte/ProgressSide/VBoxContainer/Content"]
+margin_left = 252.0
+margin_right = 374.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HUDContainte/ProgressSide/VBoxContainer/Content/CoinCounter"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "COINS"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreCounter" type="Panel" parent="MarginContainer/VBoxContainer/HUDContainte/ProgressSide/VBoxContainer/Content"]
+margin_left = 378.0
+margin_right = 500.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HUDContainte/ProgressSide/VBoxContainer/Content/ScoreCounter"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "SCORE"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
