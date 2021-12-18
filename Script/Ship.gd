@@ -67,11 +67,6 @@ func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
     applied_torque = rotation_dir * touque
 
 
-func _unhandled_input(event: InputEvent) -> void:
-    if event.is_action_pressed("space"):
-        apply_impulse(Vector2.ZERO, Vector2(0, -900).rotated(rotation))
-
-
 # Barrier for ship to down side
 func _on_PrevPositionAssigner_timeout() -> void:
     if linear_velocity.y < 0: # moving up
