@@ -4,6 +4,7 @@ extends RigidBody2D
 # tweek mass facter for modify ship control
 
 export (Vector2) var MAX_VELOCITY = Vector2(200, 300)
+export (int) var durability = 3
 
 var thrust = Vector2(0, -1000)
 var touque = 10000
@@ -20,11 +21,13 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+    $CanvasLayer/Label.text = String(durability)
     $CanvasLayer/Label2.text = String(linear_velocity)
     $CanvasLayer/Label3.text = String(angular_velocity)
     Global.constrain_in_screen(self, Vector2(16, 16))
     
     # clamping 
+    durability = clamp(durability, 0, 3) # hard codded max durability
     
     angular_velocity = clamp(angular_velocity, -5, 5)
     
@@ -79,5 +82,9 @@ func _on_PrevPositionAssigner_timeout() -> void:
 
 # collision with astroide
 func _on_Ship_body_entered(_body: Node) -> void:
-    pass
-#    queue_free()
+    if durability <= 0:
+        queue_free()
+        return
+    
+    durability -= 1
+    # add effects
