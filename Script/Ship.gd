@@ -91,3 +91,7 @@ func _on_Ship_body_entered(_body: Node) -> void:
     
     durability -= 1
     # add effects
+
+
+func _pickup_powerUp(body: Node) -> void:
+    body.pickUp(self)
