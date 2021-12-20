@@ -10,6 +10,10 @@ var camera
 var ship
 
 
+func _ready() -> void:
+    randomize()
+
+
 func constrain_in_screen(node, node_scale: Vector2 = Vector2(32, 32)):
     if node.global_position.x < -node_scale.x:
         node.global_position.x = screen_size.x + node_scale.x

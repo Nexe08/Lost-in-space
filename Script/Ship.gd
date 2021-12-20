@@ -95,3 +95,19 @@ func _on_Ship_body_entered(_body: Node) -> void:
 
 func _pickup_powerUp(body: Node) -> void:
     body.pickUp(self)
+
+
+"""
+    Power Up (Function)
+"""
+
+func apply_repearing(value: float):
+    print("applying repearing")
+
+
+func apply_speed_boost(boost_time: float):
+    print("applying speed boost")
+
+
+func apply_score_boost(increament_in_score: float):
+    print("applying score boost")

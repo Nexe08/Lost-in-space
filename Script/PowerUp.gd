@@ -1,13 +1,26 @@
 extends RigidBody2D
 # PowerUp
 
-enum TYPES{HEALING, SPEED, SCOREBOOST}
+enum TYPES{REAPAIRING, SPEED, SCOREBOOST}
 export (TYPES) var PowerUpType
 
 
 func _ready() -> void:
-    pass # Replace with function body.
+    var chooice = [TYPES.REAPAIRING, TYPES.SPEED, TYPES.SCOREBOOST]
+    chooice.shuffle()
+    PowerUpType = chooice[0]
 
 
 func pickUp(node):
-    print(node.name)
+    match PowerUpType:
+        TYPES.REAPAIRING:
+            if node.has_method("apply_repearing"):
+                node.apply_repearing(1)
+        
+        TYPES.SPEED:
+            if node.has_method("apply_speed_boost"):
+                node.apply_speed_boost(5)
+        
+        TYPES.SCOREBOOST:
+            if node.has_method("apply_score_boost"):
+                node.apply_score_boost(10)
