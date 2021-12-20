@@ -23,3 +23,9 @@ script = ExtResource( 3 )
 
 [node name="PowerUp" parent="." instance=ExtResource( 5 )]
 position = Vector2( 514, 57 )
+
+[node name="PowerUpDestributionTiemerDebug" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="PowerUpDestributionTiemerDebug" to="." method="_on_PowerUpDestributionTiemerDebug_timeout"]

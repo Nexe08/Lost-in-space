@@ -10,6 +10,8 @@ var camera
 var ship
 
 
+var power_up_path: PackedScene = preload("res://Scene/PowerUp/PowerUp.tscn")
+
 func _ready() -> void:
     randomize()
 

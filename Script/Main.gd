@@ -18,13 +18,27 @@ func _ready() -> void:
     for _i in range(astroid_density):
         _spawn_astroid()
 
-# for testing we gonna spawn astroied in side screen
+
 func _spawn_astroid():
     var instance = a.instance()
     add_child(instance)
+
+
+func _spawn_power_up(data):
+    var power_up_instance = Global.power_up_path.instance()
+    power_up_instance.global_position = Vector2(data.position.x, Global.ship.global_position.y - 900)
+    add_child(power_up_instance)
+    print(power_up_instance.global_position)
 
 
 # signal connection
 func _on_astroid_destroyed():
     # spawn new astriod in reqired place
     _spawn_astroid()
+
+
+# DEBUG
+func _on_PowerUpDestributionTiemerDebug_timeout() -> void:
+    _spawn_power_up({"position": Vector2(rand_range(0, 341), 0)})
+    _spawn_power_up({"position": Vector2(rand_range(341, 682), 0)})
+    _spawn_power_up({"position": Vector2(rand_range(682, 1024), 0)})
