@@ -47,8 +47,8 @@ func _process(delta: float) -> void:
 
 func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
     if Input.is_action_pressed("w"):
-        lt.emitting = true
-        rt.emitting = true
+#        lt.emitting = true
+#        rt.emitting = true
         applied_force = thrust.rotated(rotation)
         
         if thuster_sfx.playing == false:
@@ -56,8 +56,8 @@ func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
     elif Input.is_action_pressed("s"):
         applied_force = -(thrust / 2).rotated(rotation)
     else:
-        lt.emitting = false
-        rt.emitting = false
+#        lt.emitting = false
+#        rt.emitting = false
         applied_force = Vector2.ZERO
     
         thuster_sfx.stop()
@@ -102,8 +102,8 @@ func _pickup_powerUp(body: Node) -> void:
 """
 
 func apply_repearing(value: float):
-    print("applying reapearing")
     durability += value
+#    print("applying reapearing")
 
 
 func apply_speed_boost(boost_time: float):
@@ -112,3 +112,6 @@ func apply_speed_boost(boost_time: float):
 
 func apply_score_boost(increament_in_score: float):
     print("applying score boost")
+
+func apply_unbrackability(unbrackability_time: float):
+    print("applying unbrackability")

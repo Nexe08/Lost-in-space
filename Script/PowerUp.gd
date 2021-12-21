@@ -1,14 +1,14 @@
 extends RigidBody2D
 # PowerUp
 
-enum TYPES{REAPAIRING, SPEED, SCOREBOOST}
+enum TYPES{REAPAIRING, SPEED, SCOREBOOST, UNBRACKABLE}
 export (TYPES) var PowerUpType
 
 onready var sprite = $Sprite
 
 
 func _ready() -> void:
-    var chooice = [TYPES.REAPAIRING, TYPES.SPEED, TYPES.SCOREBOOST]
+    var chooice = [TYPES.REAPAIRING, TYPES.SPEED, TYPES.SCOREBOOST, TYPES.UNBRACKABLE]
     chooice.shuffle()
     PowerUpType = chooice[0]
     
@@ -21,6 +21,17 @@ func _ready() -> void:
         
         TYPES.SCOREBOOST:
             sprite.frame = 2
+        
+        TYPES.UNBRACKABLE:
+            sprite.frame = 3
+
+
+func _self_destruction():
+    queue_free()
+
+
+func _on_LifeTime_timeout() -> void:
+    _self_destruction()
 
 
 func pickUp(node):
@@ -36,3 +47,9 @@ func pickUp(node):
         TYPES.SCOREBOOST:
             if node.has_method("apply_score_boost"):
                 node.apply_score_boost(10)
+        
+        TYPES.UNBRACKABLE:
+            if node.has_method("apply_unbrackability"):
+                node.apply_unbrackability(5)
+    
+    _self_destruction()

@@ -25,9 +25,10 @@ func _spawn_astroid():
 
 
 func _spawn_power_up(data):
-    var power_up_instance = Global.power_up_path.instance()
-    power_up_instance.global_position = Vector2(data.position.x, Global.ship.global_position.y - 900)
-    add_child(power_up_instance)
+    if is_instance_valid(Global.ship):
+        var power_up_instance = Global.power_up_path.instance()
+        power_up_instance.global_position = Vector2(data.position.x, Global.ship.global_position.y - 900)
+        add_child(power_up_instance)
 
 
 # signal connection
