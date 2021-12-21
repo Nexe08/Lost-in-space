@@ -29,23 +29,26 @@ func _process(delta: float) -> void:
     # clamping 
     durability = clamp(durability, 0, 3) # hard codded max durability
     
-#    angular_velocity = clamp(angular_velocity, -5, 5)
-#
-#    if linear_velocity.x > MAX_VELOCITY.x:
-#        linear_velocity.x = lerp(linear_velocity.x, MAX_VELOCITY.x, 10 * delta)
-#    elif linear_velocity.x < -MAX_VELOCITY.x:
-#        linear_velocity.x = lerp(linear_velocity.x, -MAX_VELOCITY.x, 10 * delta)
+    if angular_velocity < -5:
+        angular_velocity = -5
+    elif angular_velocity > 5:
+        angular_velocity = 5
+    
+    if linear_velocity.x < -MAX_VELOCITY.x:
+        linear_velocity.x = -MAX_VELOCITY.x
+    elif linear_velocity.x > MAX_VELOCITY.x:
+        linear_velocity.x = MAX_VELOCITY.x
     
     if linear_velocity.y < -MAX_VELOCITY.y:
-        linear_velocity.y = lerp(linear_velocity.y, -MAX_VELOCITY.y, 10 * delta)
+        linear_velocity.y = -MAX_VELOCITY.y
     elif linear_velocity.y > MAX_VELOCITY.y:
-        linear_velocity.y = lerp(linear_velocity.y, MAX_VELOCITY.y, 10 * delta)
+        linear_velocity.y = MAX_VELOCITY.y
 
 
 func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
     if Input.is_action_pressed("w"):
-        lt.emitting = true
-        rt.emitting = true
+#        lt.emitting = true
+#        rt.emitting = true
         applied_force = thrust.rotated(rotation)
         
         if thuster_sfx.playing == false:
@@ -53,8 +56,8 @@ func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
     elif Input.is_action_pressed("s"):
         applied_force = -(thrust / 2).rotated(rotation)
     else:
-        lt.emitting = false
-        rt.emitting = false
+#        lt.emitting = false
+#        rt.emitting = false
         applied_force = Vector2.ZERO
     
         thuster_sfx.stop()
@@ -88,3 +91,27 @@ func _on_Ship_body_entered(_body: Node) -> void:
     
     durability -= 1
     # add effects
+
+
+func _pickup_powerUp(body: Node) -> void:
+    body.pickUp(self)
+
+
+"""
+    Power Up (Function)
+"""
+
+func apply_repearing(value: float):
+    durability += value
+#    print("applying reapearing")
+
+
+func apply_speed_boost(boost_time: float):
+    print("applying speed boost")
+
+
+func apply_score_boost(increament_in_score: float):
+    print("applying score boost")
+
+func apply_unbrackability(unbrackability_time: float):
+    print("applying unbrackability")
