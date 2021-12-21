@@ -4,11 +4,23 @@ extends RigidBody2D
 enum TYPES{REAPAIRING, SPEED, SCOREBOOST}
 export (TYPES) var PowerUpType
 
+onready var sprite = $Sprite
+
 
 func _ready() -> void:
     var chooice = [TYPES.REAPAIRING, TYPES.SPEED, TYPES.SCOREBOOST]
     chooice.shuffle()
     PowerUpType = chooice[0]
+    
+    match PowerUpType:
+        TYPES.REAPAIRING:
+            sprite.frame = 0
+        
+        TYPES.SPEED:
+            sprite.frame = 1
+        
+        TYPES.SCOREBOOST:
+            sprite.frame = 2
 
 
 func pickUp(node):

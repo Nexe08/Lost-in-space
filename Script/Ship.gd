@@ -102,7 +102,8 @@ func _pickup_powerUp(body: Node) -> void:
 """
 
 func apply_repearing(value: float):
-    print("applying repearing")
+    print("applying reapearing")
+    durability += value
 
 
 func apply_speed_boost(boost_time: float):
