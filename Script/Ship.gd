@@ -11,6 +11,8 @@ var touque = 10000
 
 var prev_global_position: Vector2 = Vector2.ZERO
 
+var is_unbrackable: bool = false
+
 onready var lt = $leftThuster
 onready var rt = $rightThuster
 
@@ -73,6 +75,18 @@ func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
     applied_torque = rotation_dir * touque
 
 
+func _take_damage(takken_damage: float = 1):
+    if is_unbrackable:
+        return
+    
+    if durability <= 0:
+        queue_free()
+        return
+    
+    durability -= 1
+    # add effects
+
+
 # Barrier for ship to down side
 func _on_PrevPositionAssigner_timeout() -> void:
     if linear_velocity.y < 0: # moving up
@@ -85,16 +99,15 @@ func _on_PrevPositionAssigner_timeout() -> void:
 
 # collision with astroide
 func _on_Ship_body_entered(_body: Node) -> void:
-    if durability <= 0:
-        queue_free()
-        return
-    
-    durability -= 1
-    # add effects
+    _take_damage()
 
 
 func _pickup_powerUp(body: Node) -> void:
     body.pickUp(self)
+
+
+func _on_UnbrackabiltyTimer_timeout() -> void:
+    is_unbrackable = false
 
 
 """
@@ -107,11 +120,18 @@ func apply_repearing(value: float):
 
 
 func apply_speed_boost(boost_time: float):
+    """first need to make ship control more understandable"""
     print("applying speed boost")
 
 
 func apply_score_boost(increament_in_score: float):
+    """" First need score system """
     print("applying score boost")
 
 func apply_unbrackability(unbrackability_time: float):
-    print("applying unbrackability")
+    is_unbrackable = true
+    $UnbrackabiltyTimer.wait_time = unbrackability_time
+    $UnbrackabiltyTimer.one_shot = true
+    $UnbrackabiltyTimer.stop()
+    $UnbrackabiltyTimer.start()
+#    print("applying unbrackability")

@@ -40,6 +40,8 @@ shape = SubResource( 6 )
 wait_time = 0.5
 autostart = true
 
+[node name="UnbrackabiltyTimer" type="Timer" parent="."]
+
 [node name="ThursterSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 
@@ -112,3 +114,4 @@ __meta__ = {
 [connection signal="body_entered" from="." to="." method="_on_Ship_body_entered"]
 [connection signal="body_entered" from="PickUpDetectore" to="." method="_pickup_powerUp"]
 [connection signal="timeout" from="PrevPositionAssigner" to="." method="_on_PrevPositionAssigner_timeout"]
+[connection signal="timeout" from="UnbrackabiltyTimer" to="." method="_on_UnbrackabiltyTimer_timeout"]
